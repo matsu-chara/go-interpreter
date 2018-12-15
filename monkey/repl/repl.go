@@ -22,7 +22,7 @@ func Start(in io.Reader, out io.Writer) {
 			return
 		}
 		if scanner.Err() != nil {
-			fmt.Printf("scan error occurred: %+v\n")
+			fmt.Printf("scan error occurred: %+v\n", scanner.Err())
 		}
 
 		line := scanner.Text()
