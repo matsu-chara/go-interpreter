@@ -39,7 +39,7 @@ func evalStatements(stmts []ast.Statement) object.Object {
 
 func nativeBoolToBooleanObject(input bool) *object.Boolean {
 	if input {
-		retun TRUE
+		return TRUE
 	}
 
 	return FALSE
