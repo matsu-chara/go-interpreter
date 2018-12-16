@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"io"
 
+	"github.com/matsu-chara/go-interpreter/monkey/object"
+
 	"github.com/matsu-chara/go-interpreter/monkey/evaluator"
 	"github.com/matsu-chara/go-interpreter/monkey/lexer"
 	"github.com/matsu-chara/go-interpreter/monkey/parser"
@@ -14,6 +16,7 @@ const PROMPT = ">> "
 
 func Start(in io.Reader, out io.Writer) {
 	scanner := bufio.NewScanner(in)
+	env := object.NewEnvironment()
 
 	for {
 		fmt.Printf(PROMPT)
@@ -35,7 +38,7 @@ func Start(in io.Reader, out io.Writer) {
 			continue
 		}
 
-		evaluated := evaluator.Eval(program)
+		evaluated := evaluator.Eval(program, env)
 		if evaluated != nil {
 			io.WriteString(out, evaluated.Inspect())
 			io.WriteString(out, "\n")
